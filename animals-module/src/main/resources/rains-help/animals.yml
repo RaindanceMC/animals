@@ -32,10 +32,10 @@ sections:
     text: |
       Craft one from three iron nuggets over a string. Ride one of your own horses once, and the whistle remembers it. Right-click the whistle and that horse comes to you{if:animals:whistle.reach}, from up to {setting:animals:whistle.reach} blocks away in the same world{/if}. Then the whistle rests for {setting:animals:whistle.cooldown-seconds} seconds.
       It won't call a horse somebody else is riding, or one in another world.
-  - question: Can my horse armour take a trim?
-    title: Horse armour trims
+  - question: Can horse or dog armour take a trim?
+    title: Animal armour trims
     text: |
-      Yes, every horse armour (leather, copper, iron, gold, diamond, netherite) takes a trim at a smithing table, just like your own armour: a trim template, the horse armour and a trim material. Each pattern looks like the one on your own armour.
+      Yes, every horse armour (leather, copper, iron, gold, diamond, netherite) and dog armour takes a trim at a smithing table, just like your own armour: a trim template, the armour and a trim material. Each pattern looks like the one on your own armour.
   - question: How does horse armour work?
     title: Horse armour
     text: |

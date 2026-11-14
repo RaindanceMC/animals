@@ -40,18 +40,28 @@ class AnimalsPackTest {
     @Test
     @DisplayName("every trim pattern has a horse armour texture: tinted through the palette, shaded, in the trim greys only")
     void horseTrims() throws IOException {
+        trims("horse_body", 64, 64, 60);
+    }
+
+    @Test
+    @DisplayName("and a dog armour texture: smaller (wolf armour covers about a third of what horse armour does)")
+    void dogTrims() throws IOException {
+        trims("wolf_body", 64, 32, 18);
+    }
+
+    private static void trims(String layer, int width, int height, int fewest) throws IOException {
         Set<Integer> greys = Set.of(0xE0E0E0, 0xC0C0C0, 0xA0A0A0, 0x808080, 0x606060, 0x404040, 0x202020, 0x000000);
         for (String pattern : PATTERNS) {
-            String texture = "assets/minecraft/textures/trims/entity/horse_body/" + pattern + ".png";
+            String texture = "assets/minecraft/textures/trims/entity/" + layer + "/" + pattern + ".png";
             assertThat(json(texture + ".mcmeta").getAsJsonObject("palette").get("base_palette").getAsString())
                     .as(pattern).isEqualTo("trim_base");
             java.awt.image.BufferedImage image = javax.imageio.ImageIO.read(ROOT.resolve(texture).toFile());
-            assertThat(image.getWidth()).isEqualTo(64);
-            assertThat(image.getHeight()).isEqualTo(64);
+            assertThat(image.getWidth()).isEqualTo(width);
+            assertThat(image.getHeight()).isEqualTo(height);
             Set<Integer> shades = new TreeSet<>();
             int drawn = 0;
-            for (int y = 0; y < 64; y++) {
-                for (int x = 0; x < 64; x++) {
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
                     int argb = image.getRGB(x, y);
                     if ((argb >>> 24) != 0) {
                         shades.add(argb & 0xFFFFFF);
@@ -61,7 +71,7 @@ class AnimalsPackTest {
             }
             assertThat(shades).as(pattern + "'s greys").isSubsetOf(greys);
             assertThat(shades.size()).as(pattern + " has depth").isGreaterThanOrEqualTo(3);
-            assertThat(drawn).as(pattern + " shows").isGreaterThan(60);
+            assertThat(drawn).as(pattern + " shows").isGreaterThan(fewest);
         }
     }
 

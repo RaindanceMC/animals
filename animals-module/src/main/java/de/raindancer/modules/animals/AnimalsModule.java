@@ -26,7 +26,7 @@ import java.util.Set;
 
 public final class AnimalsModule implements FlexModule {
 
-    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.2.0")
+    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.3.0")
             .describedAs("Horses faster on roads, trims on horse armour, a horse whistle, better breeding and horse stats")
             .by("Raindancer118");
 
@@ -83,6 +83,11 @@ public final class AnimalsModule implements FlexModule {
         if (twins == 0 || !trims.allPresent()) {
             context.log().warn("No trim recipe for horse armour is in the server's recipes ({} added).", twins);
         }
+        TrimTwins dogTrims = new TrimTwins(server, new NamespacedKey(context.plugin(), "wolf").getNamespace(), "wolf",
+                Set.of(Material.WOLF_ARMOR));
+        int dogTwins = dogTrims.register();
+        context.closeWith(dogTrims::unregister);
+        context.listener(dogTrims.followReloads(n -> context.log().info("Datapacks reloaded: {} trim recipes take dog armour.", n)));
         AnimalsPack.contribute(context.plugin(), context.core(), context.log());
         context.closeWith(() -> AnimalsPack.withdraw(context.core()));
 
@@ -122,8 +127,8 @@ public final class AnimalsModule implements FlexModule {
         context.closeWith(sweeping::cancel);
 
         services = new AnimalsServices(context.core().messages(), settings::current);
-        context.log().info("Horses are up: {} trim recipes take horse armour; roads {} %, elsewhere {} %; breeding {}; whistle {}.",
-                twins, settings.current().roadPercent(), settings.current().offRoadPercent(),
+        context.log().info("Horses are up: {} trim recipes take horse armour, {} dog armour; roads {} %, elsewhere {} %; breeding {}; whistle {}.",
+                twins, dogTwins, settings.current().roadPercent(), settings.current().offRoadPercent(),
                 settings.current().breeding() ? "better" : "vanilla", settings.current().whistle() ? "on" : "off");
     }
 

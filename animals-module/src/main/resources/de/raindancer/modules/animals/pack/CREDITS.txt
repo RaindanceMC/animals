@@ -1,5 +1,5 @@
-Horse armour trims (textures/trims/entity/horse_body/*.png): made by art/build-horse-trims.py from the game's own
-player trim textures (each horse face takes the matching piece, unscaled).
+Horse and dog armour trims (textures/trims/entity/horse_body/*.png, wolf_body/*.png): made by art/build-animal-trims.py
+from the game's own player trim textures (each face of the armour takes the matching piece, unscaled).
 
 Horse whistle texture (assets/rainsanimals/textures/item/whistle.png): "Horse Whistle" by jbossjaslow (Josh Jaslow),
 https://modrinth.com/mod/horse-whistle, source https://github.com/jbossjaslow/HorseWhistle, unchanged.
