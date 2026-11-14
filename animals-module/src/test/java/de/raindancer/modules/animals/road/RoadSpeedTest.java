@@ -17,12 +17,12 @@ class RoadSpeedTest {
 
 
     @Test
-    @DisplayName("shipped: 160 percent on dirt path and gravel, 110 everywhere else")
+    @DisplayName("shipped: 160 percent on dirt path, gravel and cobblestone, 110 everywhere else")
     void shipped() {
         AnimalsSettings d = AnimalsSettings.DEFAULTS;
         assertThat(d.roadPercent()).isEqualTo(160);
         assertThat(d.offRoadPercent()).isEqualTo(110);
-        assertThat(RoadSpeed.roads(d.roadBlocks(), BLOCKS)).containsExactlyInAnyOrder(Material.DIRT_PATH, Material.GRAVEL);
+        assertThat(RoadSpeed.roads(d.roadBlocks(), BLOCKS)).containsExactlyInAnyOrder(Material.DIRT_PATH, Material.GRAVEL, Material.COBBLESTONE);
         assertThat(RoadSpeed.isOff(100, 100)).isTrue();
         assertThat(RoadSpeed.isOff(d.roadPercent(), d.offRoadPercent())).isFalse();
     }

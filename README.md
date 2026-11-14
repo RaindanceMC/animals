@@ -3,7 +3,7 @@
 Horses and animal armour for a Paper 26.x server, as a Rain's Flexible Modules module (`animals-module`) and a
 standalone plugin (`animals-standalone`, built against RainsCore).
 
-- **Roads:** a ridden horse runs at `animals:road-percent` of its own speed on road blocks (dirt path, gravel),
+- **Roads:** a ridden horse runs at `animals:road-percent` of its own speed on road blocks (dirt path, gravel, cobblestone),
   `animals:off-road-percent` elsewhere.
 - **Taming:** a tamed horse has `animals:tamed-health-percent` of its wild health (as a wolf becoming a dog).
 - **Breeding:** foals land between their parents, nearer the better one; sometimes a stat beats both.

@@ -14,7 +14,7 @@ sections:
   - question: Are horses faster on roads?
     title: Roads
     text: |
-      Yes. On dirt path (a shovel on grass) and gravel your horse runs at {setting:animals:road-percent} % of its own speed, everywhere else at {setting:animals:off-road-percent} %. A fast horse stays faster than a slow one; build roads between your places and you get there quicker.
+      Yes. On road blocks ({setting:animals:road-blocks}; dirt path is a shovel on grass) your horse runs at {setting:animals:road-percent} % of its own speed, everywhere else at {setting:animals:off-road-percent} %. A fast horse stays faster than a slow one; build roads between your places and you get there quicker.
   - question: How do I see how good a horse is?
     title: Stats
     text: |

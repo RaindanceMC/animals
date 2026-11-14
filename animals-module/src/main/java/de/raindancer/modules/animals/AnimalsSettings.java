@@ -79,6 +79,6 @@ public record AnimalsSettings(
         @Key("stats.enabled")
         boolean stats) {
 
-    public static final AnimalsSettings DEFAULTS = new AnimalsSettings(160, 110, "dirt_path, gravel",
+    public static final AnimalsSettings DEFAULTS = new AnimalsSettings(160, 110, "dirt_path, gravel, cobblestone",
             200, true, 10, 5, true, 256, 30, true);
 }
