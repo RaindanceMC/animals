@@ -1,0 +1,27 @@
+# Rain's Animals — every line this module says.
+#
+# Offered as a floor: anything an owner already has in their own messages.yml wins.
+animals:
+
+  only-a-player: "<red>Only a player in the game can do that."
+  usage: "<gray>/horses stats <dark_gray>— switch the horse stats above your hotbar on or off"
+
+  stats:
+    line: "<gray>Speed <white><speed></white> b/s<here> <dark_gray>·</dark_gray> Jump <white><jump></white> blocks <dark_gray>·</dark_gray> Health <white><hearts></white> <red>❤</red>"
+    here: "<dark_gray> (</dark_gray><white><value></white><dark_gray> here)</dark_gray>"
+    shown: "<green>Horse stats are on: ride a horse or look at one to see its speed, jump and health."
+    hidden: "<gray>Horse stats are off. <white>/horses stats</white> brings them back."
+    disabled: "<gray>Horse stats are switched off on this server."
+
+  whistle:
+    no-horse: "<gray>No horse to call yet: ride one of your own horses first, and the whistle remembers it."
+    not-yours: "<red>The last horse you rode isn't yours, so it won't come to your whistle."
+    other-world: "<red>Your horse is in another world and can't hear you."
+    too-far: "<red>Your horse is too far away to hear you <dark_gray>(more than <reach> blocks)</dark_gray>."
+    ridden: "<red>Somebody else is riding your horse right now."
+    lost: "<red>Your horse didn't come. It may have died, or wandered off where the whistle doesn't reach."
+    coming: "<gray>You whistle…"
+    came: "<green>Your horse is here."
+    disabled: "<gray>The horse whistle is switched off on this server."
+
+  foal: "<gray>A foal is born: <white><line>"

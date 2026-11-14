@@ -1,0 +1,38 @@
+id: animals
+title: Horses & animal armour
+summary: Roads make horses faster, horse armour takes trims, a whistle calls your horse, and foals take after the better parent.
+intro: |
+  A good horse is a friend for life. A great one comes when you whistle.
+icon: SADDLE
+category: Items & enchantments
+order: 46
+module: animals
+aliases: [horse, horses, whistle, horse whistle, breeding, horse stats, horse armour, horse armor]
+keywords: [horse, road, path, gravel, speed, jump, health, foal, breed, trim, smithing, whistle, call]
+commands: [horses]
+sections:
+  - question: Are horses faster on roads?
+    title: Roads
+    text: |
+      Yes. On dirt path (a shovel on grass) and gravel your horse runs at {setting:animals:road-percent} % of its own speed, everywhere else at {setting:animals:off-road-percent} %. A fast horse stays faster than a slow one; build roads between your places and you get there quicker.
+  - question: How do I see how good a horse is?
+    title: Stats
+    text: |
+      {if:animals:stats.enabled}Ride a horse, or look at one up close: its speed (in blocks a second, and how fast it is right where it stands), jump height and health show above your hotbar. {run:/horses stats} switches that off and on again, just for you.{else}Horse stats are switched off on this server.{/if}
+  - question: Does taming make a horse stronger?
+    title: Taming
+    text: |
+      Yes, like a wolf becoming a dog: a tamed horse, donkey or mule has {setting:animals:tamed-health-percent} % of the health it had wild. Its foals still inherit from the wild values, so breeding stays fair.
+  - question: How do I breed better horses?
+    title: Breeding
+    text: |
+      {if:animals:breeding.enabled}Breed two horses as usual (golden carrots or golden apples). Every foal lands between its parents, closer to the better one, stat by stat — and about one stat in {setting:animals:breeding.better-chance} out of a hundred comes out better than both parents. So pair your best horses, and every generation can climb.{else}Breeding works like vanilla here.{/if}
+  - question: How does the horse whistle work?
+    title: Horse whistle
+    text: |
+      Craft one from three iron nuggets over a string. Ride one of your own horses once, and the whistle remembers it. Right-click the whistle and that horse comes to you{if:animals:whistle.reach}, from up to {setting:animals:whistle.reach} blocks away in the same world{/if}. Then the whistle rests for {setting:animals:whistle.cooldown-seconds} seconds.
+      It won't call a horse somebody else is riding, or one in another world.
+  - question: Can my horse armour take a trim?
+    title: Horse armour trims
+    text: |
+      Yes, every horse armour (leather, copper, iron, gold, diamond, netherite) takes a trim at a smithing table, just like your own armour: a trim template, the horse armour and a trim material. Each pattern looks like the one on your own armour.

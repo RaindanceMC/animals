@@ -1,0 +1,4 @@
+# The same lines, plainer, for servers on message-tone serious.
+animals:
+  whistle:
+    lost: "<red>Your horse did not come."

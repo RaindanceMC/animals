@@ -1,0 +1,11 @@
+Horse armour trims (textures/trims/entity/horse_body/*.png): made by art/build-horse-trims.py from the game's own
+player trim textures (each horse face takes the matching piece, unscaled).
+
+Horse whistle texture (assets/rainsanimals/textures/item/whistle.png): "Horse Whistle" by jbossjaslow (Josh Jaslow),
+https://modrinth.com/mod/horse-whistle, source https://github.com/jbossjaslow/HorseWhistle, unchanged.
+Apache License 2.0: licenses/horse-whistle-Apache-2.0.txt.
+
+Horse whistle sounds (assets/rainsanimals/sounds/whistle1-4.ogg): "Whistlebound Horse" by ThBTT,
+https://modrinth.com/mod/whistlebound-horse, source https://github.com/thiagotellescontato-hue/whistlebound-horse;
+changed: mixed down from stereo to mono so the game plays them where the whistler stands.
+MIT License: licenses/whistlebound-horse-MIT.txt.

@@ -1,0 +1,11 @@
+{
+  "whistle": {
+    "subtitle": "Horse whistle",
+    "sounds": [
+      "rainsanimals:whistle1",
+      "rainsanimals:whistle2",
+      "rainsanimals:whistle3",
+      "rainsanimals:whistle4"
+    ]
+  }
+}
