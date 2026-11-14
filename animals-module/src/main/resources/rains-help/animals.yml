@@ -36,3 +36,11 @@ sections:
     title: Horse armour trims
     text: |
       Yes, every horse armour (leather, copper, iron, gold, diamond, netherite) takes a trim at a smithing table, just like your own armour: a trim template, the horse armour and a trim material. Each pattern looks like the one on your own armour.
+  - question: How does horse armour work?
+    title: Horse armour
+    text: |
+      Like wolf armour: it takes the hits instead of your horse and wears out doing so — its durability shows like any tool's. When it breaks, your horse is on its own. Mend it at an anvil with what it is made of (leather, copper, iron, gold, diamond, netherite).
+  - question: Can I enchant horse and dog armour?
+    title: Enchanting animal armour
+    text: |
+      Yes, at an enchanting table or with books at an anvil. Everything that goes on works: Protection (and Fire, Blast, Projectile Protection), Thorns, Feather Falling, Depth Strider, Soul Speed, Frost Walker, Respiration, Unbreaking and Mending. Mending takes the experience you pick up while riding (or, for dog armour, while your dog is near you).

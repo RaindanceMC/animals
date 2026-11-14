@@ -26,7 +26,7 @@ import java.util.Set;
 
 public final class AnimalsModule implements FlexModule {
 
-    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.1.0")
+    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.2.0")
             .describedAs("Horses faster on roads, trims on horse armour, a horse whistle, better breeding and horse stats")
             .by("Raindancer118");
 
@@ -40,6 +40,31 @@ public final class AnimalsModule implements FlexModule {
     @Override
     public ModuleInfo info() {
         return INFO;
+    }
+
+    /**
+     * Horse and dog armour into the item tags armour enchantments check, so books go on them at an anvil and the
+     * enchanting table offers them: protections and Thorns (armour), the boots' ones (feet), Respiration (head),
+     * Unbreaking and Mending.
+     */
+    @Override
+    public void bootstrap(io.papermc.paper.plugin.bootstrap.BootstrapContext context) {
+        java.util.List<io.papermc.paper.registry.TypedKey<org.bukkit.inventory.ItemType>> armours = new java.util.ArrayList<>();
+        for (Material material : HORSE_ARMOURS) {
+            armours.add(io.papermc.paper.registry.TypedKey.create(io.papermc.paper.registry.RegistryKey.ITEM,
+                    net.kyori.adventure.key.Key.key(material.getKey().toString())));
+        }
+        armours.add(io.papermc.paper.registry.TypedKey.create(io.papermc.paper.registry.RegistryKey.ITEM,
+                net.kyori.adventure.key.Key.key("minecraft:wolf_armor")));
+        context.getLifecycleManager().registerEventHandler(
+                io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents.TAGS.postFlatten(io.papermc.paper.registry.RegistryKey.ITEM),
+                event -> {
+                    var tags = event.registrar();
+                    tags.addToTag(io.papermc.paper.registry.keys.tags.ItemTypeTagKeys.ENCHANTABLE_ARMOR, armours);
+                    tags.addToTag(io.papermc.paper.registry.keys.tags.ItemTypeTagKeys.ENCHANTABLE_FOOT_ARMOR, armours);
+                    tags.addToTag(io.papermc.paper.registry.keys.tags.ItemTypeTagKeys.ENCHANTABLE_DURABILITY, armours);
+                    tags.addToTag(io.papermc.paper.registry.keys.tags.ItemTypeTagKeys.ENCHANTABLE_HEAD_ARMOR, armours);
+                });
     }
 
     @Override
@@ -89,6 +114,12 @@ public final class AnimalsModule implements FlexModule {
                         context.closeWith(() -> server.removeRecipe(recipe.getKey(), true));
                     }
                 });
+
+        de.raindancer.modules.animals.armour.AnimalArmour armour =
+                new de.raindancer.modules.animals.armour.AnimalArmour(context.plugin());
+        context.listener(armour);
+        var sweeping = armour.start();
+        context.closeWith(sweeping::cancel);
 
         services = new AnimalsServices(context.core().messages(), settings::current);
         context.log().info("Horses are up: {} trim recipes take horse armour; roads {} %, elsewhere {} %; breeding {}; whistle {}.",
