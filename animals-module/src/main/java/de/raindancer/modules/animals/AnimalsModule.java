@@ -72,7 +72,6 @@ public final class AnimalsModule implements FlexModule {
         Server server = context.plugin().getServer();
         context.core().messages().defineFrom(AnimalsModule.class.getResourceAsStream("messages.yml"),
                 context.chat().brand()::chatPrefix);
-        context.core().messages().seriousFrom(AnimalsModule.class.getResourceAsStream("messages-serious.yml"));
         SettingsStore<AnimalsSettings> settings = context.settings(AnimalsSettings.class, AnimalsSettings.DEFAULTS);
 
         TrimTwins trims = new TrimTwins(server, new NamespacedKey(context.plugin(), "horse").getNamespace(), "horse",
