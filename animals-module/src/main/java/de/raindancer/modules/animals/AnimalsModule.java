@@ -149,7 +149,7 @@ public final class AnimalsModule implements FlexModule {
         return List.of(ModuleCommand.of("horses", "Switches the horse stats above your hotbar",
                         new HorsesCommand(AnimalsModule::require))
                 .aliased("horse")
-                .taking("stats — switch the horse stats above your hotbar on or off"));
+                .taking("stats: switch the horse stats above your hotbar on or off"));
     }
 
     @Override

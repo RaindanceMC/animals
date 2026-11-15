@@ -2,7 +2,7 @@ id: animals
 title: Horses & animal armour
 summary: Roads make horses faster, horse armour takes trims, a whistle calls your horse, and foals take after the better parent.
 intro: |
-  A good horse is a friend for life. A great one comes when you whistle.
+  Horses run faster on roads, horse armour takes trims and enchantments, and a whistle calls your horse.
 icon: SADDLE
 category: Items & enchantments
 order: 46
@@ -14,7 +14,7 @@ sections:
   - question: Are horses faster on roads?
     title: Roads
     text: |
-      Yes. On road blocks ({setting:animals:road-blocks}; dirt path is a shovel on grass) your horse runs at {setting:animals:road-percent} % of its own speed, everywhere else at {setting:animals:off-road-percent} %. A fast horse stays faster than a slow one; build roads between your places and you get there quicker.
+      Yes. On road blocks ({setting:animals:road-blocks}; dirt path is a shovel on grass) your horse runs at {setting:animals:road-percent} % of its own speed, everywhere else at {setting:animals:off-road-percent} %. A fast horse stays faster than a slow one. Roads between your places get you there quicker.
   - question: How do I see how good a horse is?
     title: Stats
     text: |
@@ -26,7 +26,7 @@ sections:
   - question: How do I breed better horses?
     title: Breeding
     text: |
-      {if:animals:breeding.enabled}Breed two horses as usual (golden carrots or golden apples). Every foal lands between its parents, closer to the better one, stat by stat — and about one stat in {setting:animals:breeding.better-chance} out of a hundred comes out better than both parents. So pair your best horses, and every generation can climb.{else}Breeding works like vanilla here.{/if}
+      {if:animals:breeding.enabled}Breed two horses as usual (golden carrots or golden apples). Every foal lands between its parents, closer to the better one, stat by stat. About one stat in {setting:animals:breeding.better-chance} out of a hundred comes out better than both parents. Pair your best horses and every generation can improve.{else}Breeding works like vanilla here.{/if}
   - question: How does the horse whistle work?
     title: Horse whistle
     text: |
@@ -39,7 +39,7 @@ sections:
   - question: How does horse armour work?
     title: Horse armour
     text: |
-      Like wolf armour: it takes the hits instead of your horse and wears out doing so — its durability shows like any tool's. When it breaks, your horse is on its own. Mend it at an anvil with what it is made of (leather, copper, iron, gold, diamond, netherite).
+      Like wolf armour: it takes the hits instead of your horse and wears out doing so. Its durability shows like any tool's. When it breaks, your horse is on its own. Mend it at an anvil with what it is made of (leather, copper, iron, gold, diamond, netherite).
   - question: Can I enchant horse and dog armour?
     title: Enchanting animal armour
     text: |

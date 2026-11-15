@@ -30,7 +30,7 @@ public record AnimalsSettings(
         int offRoadPercent,
 
         @In("animals/roads") @Title("Road blocks")
-        @Describe("Block names, comma separated, that count as road — what the hooves stand on. Dirt path is what a "
+        @Describe("Block names, comma separated, that count as road. Dirt path is what a "
                 + "shovel makes of grass.")
         @Key("road-blocks")
         String roadBlocks,
