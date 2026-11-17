@@ -26,7 +26,7 @@ import java.util.Set;
 
 public final class AnimalsModule implements FlexModule {
 
-    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.3.2")
+    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.4.0")
             .describedAs("Horses faster on roads, trims on horse armour, a horse whistle, better breeding and horse stats")
             .by("Raindancer118");
 
@@ -124,6 +124,16 @@ public final class AnimalsModule implements FlexModule {
         context.listener(armour);
         var sweeping = armour.start();
         context.closeWith(sweeping::cancel);
+
+        // /preferences (Core 2.103.0) lists the stats switch; /horses stats keeps working.
+        try {
+            var preference = de.raindancer.modules.animals.stats.StatsPreference.build(settings::current,
+                    context.core().messages());
+            de.raindancer.core.ui.preference.Preferences.offer(context.plugin(), preference);
+            context.closeWith(() -> de.raindancer.core.ui.preference.Preferences.withdraw(preference));
+        } catch (LinkageError olderCore) {
+            context.log().info("RainsCore is older than 2.103.0: the horse stats switch is not on /preferences.");
+        }
 
         services = new AnimalsServices(context.core().messages(), settings::current);
         context.log().info("Horses are up: {} trim recipes take horse armour, {} dog armour; roads {} %, elsewhere {} %; breeding {}; whistle {}.",

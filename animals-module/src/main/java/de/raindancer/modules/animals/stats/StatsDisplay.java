@@ -56,12 +56,17 @@ public final class StatsDisplay {
 
     /** Switches it for the player. @return whether it is on now */
     public static boolean toggle(Player player) {
-        if (hidden(player)) {
+        boolean on = hidden(player);
+        set(player, on);
+        return on;
+    }
+
+    public static void set(Player player, boolean on) {
+        if (on) {
             player.getPersistentDataContainer().remove(HIDDEN);
-            return true;
+        } else {
+            player.getPersistentDataContainer().set(HIDDEN, PersistentDataType.BYTE, (byte) 1);
         }
-        player.getPersistentDataContainer().set(HIDDEN, PersistentDataType.BYTE, (byte) 1);
-        return false;
     }
 
     private void show(Player player) {
