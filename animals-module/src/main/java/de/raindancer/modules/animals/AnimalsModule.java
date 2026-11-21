@@ -26,7 +26,7 @@ import java.util.Set;
 
 public final class AnimalsModule implements FlexModule {
 
-    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.4.0")
+    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.5.0")
             .describedAs("Horses faster on roads, trims on horse armour, a horse whistle, better breeding and horse stats")
             .by("Raindancer118");
 
@@ -104,7 +104,8 @@ public final class AnimalsModule implements FlexModule {
         var showing = stats.start();
         context.closeWith(showing::cancel);
 
-        WhistleService whistle = new WhistleService(context.plugin(), context.core().messages(), settings::current);
+        WhistleService whistle = new WhistleService(context.plugin(), context.core(), context.core().messages(),
+                settings::current);
         context.listener(whistle);
         context.closeWith(whistle::stop);
         context.core().items().defineIfAbsent(WhistleService.definition());

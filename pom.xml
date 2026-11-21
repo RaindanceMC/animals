@@ -20,8 +20,8 @@
 
     <!-- This repository's own versions: bump them here. CI publishes a new version on the next push to master. -->
     <properties>
-        <animals-module.version>0.4.0</animals-module.version>
-        <rainscore.version>2.103.0</rainscore.version>
+        <animals-module.version>0.5.0</animals-module.version>
+        <rainscore.version>2.114.0</rainscore.version>
     </properties>
 
     <modules>

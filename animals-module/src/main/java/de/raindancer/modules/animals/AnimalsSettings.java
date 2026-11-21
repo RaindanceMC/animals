@@ -64,7 +64,7 @@ public record AnimalsSettings(
         boolean whistle,
 
         @In("animals/whistle") @Title("Reach (blocks)") @Range(min = 0, max = 10_000)
-        @Describe("How far away the horse may be to come, in the same world. 0: any distance.")
+        @Describe("How far away the horse may be to come, in the same world. 0: wherever its owner is, any distance and any world.")
         @Key("whistle.reach")
         int whistleReach,
 
@@ -80,5 +80,5 @@ public record AnimalsSettings(
         boolean stats) {
 
     public static final AnimalsSettings DEFAULTS = new AnimalsSettings(160, 110, "dirt_path, gravel, cobblestone",
-            200, true, 10, 5, true, 256, 30, true);
+            200, true, 10, 5, true, 0, 30, true);
 }

@@ -25,7 +25,7 @@
         <plugin.name>RainsAnimals</plugin.name>
         <!-- 0.1.0: horses faster on roads, trims on horse armour, the horse whistle, better breeding, stats above
              the hotbar (switchable) — road speed from RainsCore 2.99.0, trims from RainsElytra 0.7.0. -->
-        <plugin.version>0.4.0</plugin.version>
+        <plugin.version>0.5.0</plugin.version>
     </properties>
 
     <dependencies>

@@ -36,9 +36,11 @@ class WhistleRuleTest {
     }
 
     @Test
-    @DisplayName("reach 0 means any distance in the same world")
+    @DisplayName("reach 0 means wherever you are: any distance, and from another world too")
     void unlimited() {
         assertThat(WhistleRule.decide(ME, true, ME, true, false, 100_000, 0)).isEqualTo(WhistleRule.Outcome.CALL);
+        assertThat(WhistleRule.decide(ME, true, ME, false, false, 0, 0)).isEqualTo(WhistleRule.Outcome.CALL);
+        assertThat(WhistleRule.decide(ME, true, ME, false, true, 0, 0)).isEqualTo(WhistleRule.Outcome.RIDDEN);
     }
 
     @Test

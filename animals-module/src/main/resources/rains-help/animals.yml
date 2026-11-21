@@ -30,8 +30,8 @@ sections:
   - question: How does the horse whistle work?
     title: Horse whistle
     text: |
-      Craft one from three iron nuggets over a string. Ride one of your own horses once, and the whistle remembers it. Right-click the whistle and that horse comes to you{if:animals:whistle.reach}, from up to {setting:animals:whistle.reach} blocks away in the same world{/if}. Then the whistle rests for {setting:animals:whistle.cooldown-seconds} seconds.
-      It won't call a horse somebody else is riding, or one in another world.
+      Craft one from three iron nuggets over a string. Ride one of your own horses once, and the whistle remembers it. Right-click the whistle and that horse teleports to you{if:animals:whistle.reach}, from up to {setting:animals:whistle.reach} blocks away in the same world{else}, wherever you are, even from another world{/if}. It lands a few blocks in front of you, facing you, in your own teleport look. Then the whistle rests for {setting:animals:whistle.cooldown-seconds} seconds.
+      It won't call a horse somebody else is riding.
   - question: Can horse or dog armour take a trim?
     title: Animal armour trims
     text: |

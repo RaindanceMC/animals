@@ -12,7 +12,7 @@ public final class WhistleRule {
 
     /**
      * @param distance blocks between the caller and where the horse was last known
-     * @param reach    the most blocks it comes from; 0 for any distance in the same world
+     * @param reach    the most blocks it comes from, in the same world; 0 for any distance and any world
      */
     public static Outcome decide(UUID caller, boolean hasHorse, UUID owner, boolean sameWorld, boolean riddenByOther,
                                  double distance, int reach) {
@@ -22,11 +22,11 @@ public final class WhistleRule {
         if (!owns(caller, owner)) {
             return Outcome.NOT_YOURS;
         }
-        if (!sameWorld) {
-            return Outcome.OTHER_WORLD;
-        }
         if (riddenByOther) {
             return Outcome.RIDDEN;
+        }
+        if (!sameWorld) {
+            return reach > 0 ? Outcome.OTHER_WORLD : Outcome.CALL;
         }
         if (reach > 0 && distance > reach) {
             return Outcome.TOO_FAR;
