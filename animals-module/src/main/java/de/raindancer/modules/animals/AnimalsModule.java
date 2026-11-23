@@ -26,7 +26,7 @@ import java.util.Set;
 
 public final class AnimalsModule implements FlexModule {
 
-    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.5.0")
+    private static final ModuleInfo INFO = ModuleInfo.of("animals", "Animals", "0.5.1")
             .describedAs("Horses faster on roads, trims on horse armour, a horse whistle, better breeding and horse stats")
             .by("Raindancer118");
 

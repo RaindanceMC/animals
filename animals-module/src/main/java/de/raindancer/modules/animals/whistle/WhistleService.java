@@ -294,7 +294,6 @@ public final class WhistleService implements Listener {
                         horse.getWorld().playSound(horse.getLocation(), Sound.ENTITY_HORSE_AMBIENT,
                                 SoundCategory.NEUTRAL, 1f, 1f);
                     });
-                    Scheduling.entity(plugin, player, () -> messages.send(player, "animals.whistle.came"));
                 } else {
                     Scheduling.entity(plugin, player, () -> messages.send(player, "animals.whistle.lost"));
                 }

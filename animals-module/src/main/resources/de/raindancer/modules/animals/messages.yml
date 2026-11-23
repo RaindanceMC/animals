@@ -21,7 +21,6 @@ animals:
     ridden: "<red>Somebody else is riding your horse."
     lost: "<red>Your horse did not come. It may have died or be out of the whistle's reach."
     coming: "<gray>You whistle…"
-    came: "<green>Your horse is here."
     disabled: "<gray>The horse whistle is switched off on this server."
 
   foal: "<gray>A foal is born: <white><line>"
