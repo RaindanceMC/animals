@@ -18,12 +18,16 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDismountEvent;
 import org.bukkit.plugin.Plugin;
+import de.raindancer.core.world.protection.ProtectedArea;
 
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
- * Twice a second the horse under every rider gets a speed modifier for the block it stands on. A ridden horse moves on
+ * Twice a second the horse under every rider gets a speed modifier for the block it stands on, or for the highway
+ * it is on. A ridden horse moves on
  * its rider's client, which reads the speed attribute, so the modifier is what the client goes by. Transient — never
  * saved with the horse — and taken off when the rider gets off.
  */
@@ -36,9 +40,14 @@ public final class RoadSpeeds implements Listener {
     private volatile String roadsRead;
     private volatile Set<Material> roads = Set.of();
 
-    public RoadSpeeds(Plugin plugin, Supplier<AnimalsSettings> settings) {
+    /** The protected ground at a spot, through Core's {@code Land}: what tells a highway apart. */
+    private final Function<Location, Optional<ProtectedArea>> ground;
+
+    public RoadSpeeds(Plugin plugin, Supplier<AnimalsSettings> settings,
+                      Function<Location, Optional<ProtectedArea>> ground) {
         this.plugin = plugin;
         this.settings = settings;
+        this.ground = ground;
     }
 
     public ScheduledTask start() {
@@ -59,13 +68,14 @@ public final class RoadSpeeds implements Listener {
     /** The factor the rider's horse goes at right now, for the stats line; 1 when on foot. */
     public double factorFor(AbstractHorse horse) {
         AnimalsSettings now = settings.get();
-        if (RoadSpeed.isOff(now.roadPercent(), now.offRoadPercent())) {
+        Location at = horse.getLocation();
+        Optional<ProtectedArea> here = now.highwayTopBps() > 0 ? ground.apply(at) : Optional.empty();
+        if (here.isEmpty() && RoadSpeed.isOff(now.roadPercent(), now.offRoadPercent())) {
             return 1.0;
         }
-        Location at = horse.getLocation();
         Material under = horse.getWorld().getBlockAt(at.getBlockX(), RoadSpeed.standingBlockY(at.getY()),
                 at.getBlockZ()).getType();
-        return RoadSpeed.multiplier(under, roads, now.roadPercent(), now.offRoadPercent());
+        return RoadSpeed.factor(under, here, roads, now);
     }
 
     private void apply(Player rider, AnimalsSettings now) {

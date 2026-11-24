@@ -1,9 +1,13 @@
 package de.raindancer.modules.animals.road;
 
+import de.raindancer.core.world.protection.ProtectedArea;
+import de.raindancer.modules.animals.AnimalsSettings;
+import de.raindancer.modules.animals.stats.HorseStats;
 import org.bukkit.Material;
 
 import java.util.EnumSet;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 
 /** The arithmetic of road speed, apart from any entity. */
@@ -45,6 +49,40 @@ public final class RoadSpeed {
     /** The factor on the mount's own speed while it stands on {@code under}. */
     public static double multiplier(Material under, Set<Material> roads, int roadPercent, int offRoadPercent) {
         return (under != null && roads.contains(under) ? roadPercent : offRoadPercent) / 100.0;
+    }
+
+    /** The best movement speed a horse can be born or bred with. */
+    static final double BEST_HORSE = 0.3375;
+
+    /** The factor that takes the best horse to {@code topBps} blocks a second; 0 for highways switched off. */
+    public static double highwayFactor(int topBps) {
+        return topBps <= 0 ? 0.0 : topBps / HorseStats.blocksPerSecond(BEST_HORSE);
+    }
+
+    /**
+     * Whether this ground is a highway: held by the server (nobody owns it) and named with the prefix. Asked of
+     * whatever protects land through Core, so it is the claims plugin's server claims today without this module
+     * knowing it.
+     */
+    public static boolean isHighway(Optional<ProtectedArea> area, String prefix) {
+        if (area.isEmpty() || prefix == null || prefix.isBlank()) {
+            return false;
+        }
+        ProtectedArea ground = area.get();
+        String name = ground.name();
+        return ground.owners().isEmpty() && name != null
+                && name.toLowerCase(Locale.ROOT).startsWith(prefix.strip().toLowerCase(Locale.ROOT));
+    }
+
+    /** The factor on the mount's own speed here: a highway's first, then the road block under it, then off-road. */
+    public static double factor(Material under, Optional<ProtectedArea> area, Set<Material> roads, AnimalsSettings settings) {
+        if (settings.highwayTopBps() > 0 && isHighway(area, settings.highwayPrefix())) {
+            return highwayFactor(settings.highwayTopBps());
+        }
+        if (isOff(settings.roadPercent(), settings.offRoadPercent())) {
+            return 1.0;
+        }
+        return multiplier(under, roads, settings.roadPercent(), settings.offRoadPercent());
     }
 
     /** The block the hooves stand on, for feet at height {@code y}. */

@@ -8,13 +8,17 @@ category: Items & enchantments
 order: 46
 module: animals
 aliases: [horse, horses, whistle, horse whistle, breeding, horse stats, horse armour, horse armor]
-keywords: [horse, road, path, gravel, speed, jump, health, foal, breed, trim, smithing, whistle, call]
+keywords: [horse, road, highway, path, gravel, speed, jump, health, foal, breed, trim, smithing, whistle, call]
 commands: [horses]
 sections:
   - question: Are horses faster on roads?
     title: Roads
     text: |
       Yes. On road blocks ({setting:animals:road-blocks}; dirt path is a shovel on grass) your horse runs at {setting:animals:road-percent} % of its own speed, everywhere else at {setting:animals:off-road-percent} %. A fast horse stays faster than a slow one. Roads between your places get you there quicker.
+  - question: How fast are the highways?
+    title: Highways
+    text: |
+      {if:animals:highway-top-bps}On the server's highways the best horse there is runs {setting:animals:highway-top-bps} blocks a second, and every other horse, donkey, mule or camel its share of that: a horse half as fast as the best goes half that. Only there; off the highway the road speeds above apply again.{else}This server has no highway speed.{/if}
   - question: How do I see how good a horse is?
     title: Stats
     text: |

@@ -35,6 +35,18 @@ public record AnimalsSettings(
         @Key("road-blocks")
         String roadBlocks,
 
+        @In("animals/roads") @Title("Highways: server claims named")
+        @Describe("A server claim whose name starts with this is a highway, where the speeds below replace the road "
+                + "and off-road ones. A player's claim never is one, whatever it is called. Empty: no highways.")
+        @Key("highway-prefix")
+        String highwayPrefix,
+
+        @In("animals/roads") @Title("Top speed on a highway (blocks a second)") @Range(min = 0, max = 100)
+        @Describe("How fast the best horse there is goes on a highway; every other horse, donkey, mule or camel keeps "
+                + "its share of that. Vanilla's best horse runs about 14.6. 0: highways are ordinary ground.")
+        @Key("highway-top-bps")
+        int highwayTopBps,
+
         @In("animals/breeding") @Title("Health once tamed (percent)") @Range(min = 100, max = 1000)
         @Describe("A tamed horse, donkey or mule has this much of the health it had wild, as a wolf grows stronger when "
                 + "it becomes a dog (a wolf gets 500). 100 is vanilla.")
@@ -80,5 +92,5 @@ public record AnimalsSettings(
         boolean stats) {
 
     public static final AnimalsSettings DEFAULTS = new AnimalsSettings(160, 110, "dirt_path, gravel, cobblestone",
-            200, true, 10, 5, true, 0, 30, true);
+            "highway-", 40, 200, true, 10, 5, true, 0, 30, true);
 }
